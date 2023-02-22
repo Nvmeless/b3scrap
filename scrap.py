@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import csv
 
 
 baseUrl = 'https://www.studyrama.com'
@@ -20,7 +20,7 @@ def getEndpoints(swoup):
 
     return links
 
-def getInfos(swoup):
+def getInfoByPage(swoup):
     infosTriees = [swoup]
     return infosTriees
 
@@ -33,15 +33,36 @@ def swoup(url, process):
     return []
 
 
+def fileReader(file):
+    result = []
+    with open(file, 'r', encoding="UTF8", newline="") as f:
+        reader = csv.DictReader(f)
+        for line in reader:
+           result.append(line) 
+    return result
+
+def fileWriter(file, fieldnames, data):
+    with open(file, 'w', encoding="UTF8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(data)
+    return fileReader(file)
+
+
+data = fileReader("links.csv")
+
+fields = ['test']
+fileWriter('infos.csv', fields, data )
+
+exit()
+
 endpoints = swoup(baseUrl + uri,  getEndpoints)
 
-print(endpoints)
-result = []
-for endpoint in endpoints:
-    result.extend(swoup(endpoint, getInfos))
+# result = []
+# for endpoint in endpoints:
+#     result.extend(swoup(endpoint, getInfos))
 
 
-print(result)
 
 # Initialisation des variables
 
