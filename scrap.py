@@ -1,21 +1,47 @@
 import requests
 from bs4 import BeautifulSoup
 
+
+
 baseUrl = 'https://www.studyrama.com'
 uri = "/megamoteur/recherche?query=developpement&type=E%20F%20O"
 response = requests.get(baseUrl + uri)
 
-if response.ok:
-    swoup = BeautifulSoup(response.text, 'html.parser')
-    
+
+
+def getEndpoints(swoup):
+    links = []
+
     ul = swoup.find("ul", {"class": "results"})
     lis = ul.findAll("li")
     for li in lis:
         a = li.find("a")
-        print(baseUrl + a["href"])
+        links.append(baseUrl + a["href"])
 
-print(response.ok)
+    return links
 
+def getInfos(swoup):
+    infosTriees = [swoup]
+    return infosTriees
+
+def swoup(url, process):
+    response = requests.get(url)
+    if response.ok:
+        print("yes")
+        soup = BeautifulSoup(response.text, 'html.parser')
+        return process(soup)
+    return []
+
+
+endpoints = swoup(baseUrl + uri,  getEndpoints)
+
+print(endpoints)
+result = []
+for endpoint in endpoints:
+    result.extend(swoup(endpoint, getInfos))
+
+
+print(result)
 
 # Initialisation des variables
 
