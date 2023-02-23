@@ -20,10 +20,56 @@ def getEndpoints(swoup):
 
     return links
 
-def getInfoByPage(swoup):
-    infosTriees = [swoup]
-    return infosTriees
+def getInfoByPage(soup):
+    fiches = []
+    contacts = soup.find("div",{"class": "coordonnees"})
+    if contacts is not None:
+        tabs = contacts.findAll('li', {"class": "accordeon-item"})
+        if tabs is not None:
+            for contact in tabs:
+                name = tryToCleanOrReturnBlank(contact.find("div", {"class": "accordeon-header"}))
+                coord = contact.find("div", {"class": "accordeon-body"})
+                adress = coord.find("p")
+                tel = tryToCleanOrReturnBlank(coord.find("a", {"class": "tel"}))
+                email = tryToCleanOrReturnBlank(coord.find("a", {"class": "email"}))
+                title = tryToCleanOrReturnBlank(soup.find("title"))
+                
+                try:
+                    adress = adress.getText()
+                    cleanArrAdress = []
+                    for ele in str(adress).split("\n"):
+                        if ele != "":
+                                cleanArrAdress.append(ele.strip())
+                    
+                    realAdress = cleanArrAdress[0]
+                    realCC = cleanArrAdress[1]
+                    realCountry = cleanArrAdress[2]
+                except:
+                    adress = ""
+                    realAdress =""
+                    realCC =""
+                    realCountry =""
+                    cleanArrAdress = []
 
+
+                fiche = { 
+                "name": name, 
+                "adress": " ".join(cleanArrAdress),
+                "realAdress": realAdress,
+                "departement":realCC,
+                "country": realCountry,
+                "tel": tel,
+                "email": email, 
+                "title": title.replace(' - Studyrama', "")
+                }
+                fiches.append(fiche)
+    return fiches 
+def tryToCleanOrReturnBlank(str):
+    try:
+        result = str.getText().strip()
+    except:
+        result = ''
+    return result
 def swoup(url, process):
     response = requests.get(url)
     if response.ok:
@@ -49,15 +95,25 @@ def fileWriter(file, fieldnames, data):
     return fileReader(file)
 
 
-data = fileReader("links.csv")
 
-fields = ['test']
-fileWriter('infos.csv', fields, data )
-
-exit()
+# fileWriter('infos.csv', fields, data)
 
 endpoints = swoup(baseUrl + uri,  getEndpoints)
 
+fields = ['lien']
+rows = []
+for endpoint in endpoints:
+    row = {}
+    row['lien'] = endpoint
+    rows.append(row)
+fileWriter('links.csv', fields, rows )
+
+lignes = []
+for link in fileReader('links.csv'):
+    lignes.extend(swoup(link['lien'], getInfoByPage))
+
+fields = ["name", "adress","realAdress","departement","country", "tel", "email", "title"]
+fileWriter('infos.csv', fields, lignes )
 # result = []
 # for endpoint in endpoints:
 #     result.extend(swoup(endpoint, getInfos))

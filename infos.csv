@@ -1,5 +1,11 @@
-test
-TesT1
-Test2
-tst3
-Tasty
+name,adress,realAdress,departement,country,tel,email,title
+ESDM Nantes - NANTES,16 rue de la Rainière 44300 NANTES France ,16 rue de la Rainière,44300 NANTES,France,02 72 25 69 80,contact@esdm-formation.fr,ESDM Nantes (École Supérieure de Développement & de Management)
+ESI Business School,18 rue du Dôme 92100 BOULOGNE BILLANCOURT France ,18 rue du Dôme,92100 BOULOGNE BILLANCOURT,France,01 39 71 12 12,admission-esi@groupe-gema.com,"ESI Business School (L'Ecole de commerce du développement durable - 100% Green, Social & Digital Business)"
+ESI Business School - BORDEAUX,1 Quai Armand Lalande 33300 BORDEAUX France ,1 Quai Armand Lalande,33300 BORDEAUX,France,0139711212,info@groupe-gema.com,"ESI Business School (L'Ecole de commerce du développement durable - 100% Green, Social & Digital Business)"
+ESI Business School - LYON,47 Quai Rambaud 69002 LYON France ,47 Quai Rambaud,69002 LYON,France,0481098859,info@groupe-gema.com,"ESI Business School (L'Ecole de commerce du développement durable - 100% Green, Social & Digital Business)"
+Campus Fonderie de l'Image - BAGNOLET,"80, rue Jules Ferry 93170 BAGNOLET France ","80, rue Jules Ferry",93170 BAGNOLET,France,01 55 82 41 41,secretariat@campusfonderiedelimage.org,Campus Fonderie de l'Image
+Centre Pierre Cointreau - CCI Formation Angers,132 avenue De Lattre de Tassigny 49015 ANGERS CEDEX 01 France ,132 avenue De Lattre de Tassigny,49015 ANGERS,CEDEX 01,02 41 20 53 60,formation@maineetloire.cci.fr,"CCI Formation (Centre de Formation d’Apprentis de la Chambre de Commerce et d’Industrie de Maine-et-Loire à Angers, Cholet et Saumur)"
+ISTOM ANGERS,4 rue Joseph Lakanal 49000 ANGERS France ,4 rue Joseph Lakanal,49000 ANGERS,France,02 53 61 84 60,contact@istom.fr,"ISTOM Angers : S'inscrire, Cursus, Formation"
+3iL Ingénieurs Limoges,43 rue Sainte-Anne BP 834 87015 LIMOGES CEDEX 1 France ,43 rue Sainte-Anne,BP 834,87015 LIMOGES CEDEX 1,05 55 31 67 24,contact@3il.fr,3iL Ingénieurs (3iL Ecole d'ingénieurs en Informatique)
+Campus du Lac : Campus de Bordeaux,10 rue René Cassin Bordeaux 33300 BORDEAUX France ,10 rue René Cassin,Bordeaux,33300 BORDEAUX,0556795200,contact@campusdulac.com,Campus du Lac
+Campus Le Havre,20 quai Frissard 76087 LE HAVRE CEDEX France ,20 quai Frissard,76087 LE HAVRE CEDEX,France,02 32 92 59 99,info@em-normandie.fr,"EM Normandie (Old School, Young Mind)"
